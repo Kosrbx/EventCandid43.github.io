@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Événement – Protocole F-∞ | SCP-9396</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #1a1a1a;
+    background: #f5f5f5;
+    padding: 40px 20px;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 60px 64px;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .doc-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .doc-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    border-left: 4px solid #C0392B;
+    padding-left: 14px;
+  }
+
+  .doc-subtitle {
+    font-size: 14px;
+    color: #666;
+    padding-left: 18px;
+    margin-bottom: 20px;
+  }
+
+  /* Badges */
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    letter-spacing: .04em;
+  }
+
+  .badge-red    { background: #FDEDEC; color: #922B21; border: 1px solid #F1948A; }
+  .badge-amber  { background: #FEF9E7; color: #7D6608; border: 1px solid #F7DC6F; }
+  .badge-gray   { background: #F4F4F4; color: #555; border: 1px solid #ddd; }
+
+  /* Divider */
+  hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 28px 0;
+  }
+
+  /* Section */
+  .section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  /* Citation */
+  blockquote {
+    border-left: 3px solid #ddd;
+    margin: 14px 0;
+    padding: 6px 16px;
+    font-style: italic;
+    color: #777;
+    font-size: 13px;
+  }
+
+  /* Phases */
+  .phase {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .phase-num {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    background: #FDEDEC;
+    color: #922B21;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .phase-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* Roles grid */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .role-card {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .role-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .role-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+  }
+
+  /* Note box */
+  .note-box {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+
+  .note-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 6px;
+  }
+
+  .redacted {
+    background: #1a1a1a;
+    color: transparent;
+    border-radius: 2px;
+    padding: 0 3px;
+    user-select: none;
+  }
+
+  strong {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; padding: 40px 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="doc-label">Candidature Animateur — SCP RP FR Site 43</div>
+  <div class="doc-title">Événement : Protocole F-∞</div>
+  <div class="doc-subtitle">Apparition et brèche de confinement — SCP-9396</div>
+
+  <div class="badge-row">
+    <span class="badge badge-red">Classe Keter</span>
+    <span class="badge badge-amber">Brèche de confinement</span>
+    <span class="badge badge-gray">Durée estimée : 45–60 min</span>
+    
+  </div>
+
+  <!-- Résumé -->
+  <div class="section-title">Résumé de l'événement</div>
+  <p>Une porte mysterieuse apparaît dans l'enceinte de l'IRC-43: l'anomalie SCP-9396. Une zone spatiale à géométrie impossible, décorée comme une salle de fête. Les entités SCP-9396-2 (humanoïdes jaunes tenant des ballons rouges) envahissent progressivement le site. Le personnel doit localiser le Tome de Confinement F-∞ à l'intérieur de l'anomalie et l'activer avant que trop de membres soient transformés en instances SCP-9396-3.</p>
+  <blockquote>« Quelle est donc cette musique qui m'envoute et qui m'attire ? »</blockquote>
+
+  <hr>
+
+  <!-- Phases -->
+  <div class="section-title">Déroulement par phases</div>
+
+  <div class="phase">
+    <div class="phase-num">1</div>
+    <div>
+      <div class="phase-title">Apparition silencieuse </div>
+      <div class="phase-desc">Je scelle discrètement un couloir et y place l'entrée, la décoration de SCP-9396 (ballons, guirlandes). Je déclenche une alerte sonore mystérieuse sur le site comme une mélodie douce, sans explication immédiate. Les joueurs remarquent la disparition de la section sur la carte et s'interrogent.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">2</div>
+    <div>
+      <div class="phase-title">Première brèche — les entités sortent </div>
+      <div class="phase-desc">Je fais sortir deux ou trois instances SCP-9396-2 (jouées par des animateurs volontaires ou des joueurs volontaires) qui déambulent lentement dans les couloirs (en répétant leurs cinq phrases). Je les maintiens en mode passif tant qu'aucun bruit fort n'est détecté, la poursuite s'enclenche dès qu'un joueur bouge trop vite ou fait du bruit.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">3</div>
+    <div>
+      <div class="phase-title">Exploration de SCP-9396 </div>
+      <div class="phase-desc">J'autorise l'entrée d'une équipe FIM E-11 (minimum 2 agents + 1 Classe D éclaireur). Je guide les joueurs à travers l'anomalie via des indications RP : couloirs labyrinthiques, entités qui s'arrêtent si on se cache sous une table. L'objectif est de localiser la grande salle centrale et le Tome de Confinement F-∞.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">4</div>
+    <div>
+      <div class="phase-title">Montée de tension — la transformation commence </div>
+      <div class="phase-desc">J'envoie des messages privés aux joueurs trop longtemps exposés à l'anomalie ou entrés sans équipement de protection : « ta peau prend une légère teinte jaune… ». Cette mécanique crée une urgence RP forte et pousse l'équipe à accélérer sa mission de récupération du Tome.</div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-num">5</div>
+    <div>
+      <div class="phase-title">Activation du Protocole F-∞ </div>
+      <div class="phase-desc">Une fois le Tome récupéré, je mets en scène la lecture à voix haute de la dernière page (par un membre du Département Scientifique ou de la FIM). Je déclenche ensuite le scellement : les entités se figent, la musique s'arrête, les portes de l'anomalie se ferment définitivement. Je conclus l'événement avec un compte-rendu RP pour les personnages affectés par SCP-9396-3.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Rôles -->
+  <div class="section-title">Rôles et distribution</div>
+  <div class="roles-grid">
+    <div class="role-card">
+      <div class="role-name">Animateur principal (moi)</div>
+      <div class="role-desc">Je gère l'anomalie, la narration RP, l'activation des phases et j'envoie les messages privés pour les symptômes de transformation.</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Instances SCP-9396-2</div>
+      <div class="role-desc">1–3 joueurs volontaires ou d'autres animateurs volontaires. Déplacement lent, phrases répétées en boucle(optionnel), poursuite déclenchée au bruit ou au mouvement.</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">FIM E-11</div>
+      <div class="role-desc">Mission d'exploration et récupération du Tome. Minimum 2 agents + 1 Classe D éclaireur.</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Département Scientifique</div>
+      <div class="role-desc">Un joueur haut gradé valide l'autorisation d'entrée dans l'anomalie(si safe).</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Points forts -->
+  <div class="section-title">Ce que cet événement met en avant</div>
+  <p><strong>Créativité</strong> — SCP-9396 est une anomalie entièrement originale avec une identité visuelle forte (l'esthétique fête d'anniversaire horrifique), des règles comportementales cohérentes et un artefact narratif unique (le Tome F-∞). Je présente un univers auto-suffisant, prêt à jouer.</p>
+  <p><strong>Équilibre gameplay / fun</strong> — La mécanique "se cacher sous une table pour survivre" est simple, intuitive et immédiatement fun sur Roblox. La progression en cinq phases garantit que tous les joueurs peuvent participer, même ceux qui ne souhaitent pas entrer dans l'anomalie.</p>
+  <p><strong>Gestion de l'événement</strong> — Je propose une structure claire avec des rôles définis, une durée maîtrisée et une conclusion narrative satisfaisante. La fin — la musique qui s'arrête — marque un dénouement mémorable pour tous les participants.</p>
+
+  <!-- Note finale -->
+  <div class="note-box">
+    <div class="note-label">Note du Dr. <span class="redacted">████</span></div>
+    <p>« Nous ignorons si SCP-9396 peut se réactiver après un scellement. Ce que nous savons, c'est que la musique s'est arrêtée. Pour l'instant. »</p>
+  </div>
+
+</div>
+</body>
+</html>
